@@ -10,6 +10,8 @@ class ModelProperties_MNIST:
     nb_classes = 10
     img_rows, img_cols = 28, 28 # input image dimensions
     img_channel = 1
+    input_shape = (1, 28, 28)
+
 
 def create_MNIST_CNN():
     # Create sequential model
@@ -23,7 +25,7 @@ def create_MNIST_CNN():
         init='he_normal', 
         border_mode='valid',
         input_shape=(ModelProperties_MNIST.img_channel, ModelProperties_MNIST.img_rows, ModelProperties_MNIST.img_cols)
-        # input_shape= (ModelProperties_MNIST.img_channel, ModelProperties_MNIST.img_rows * ModelProperties_MNIST.img_cols)
+        # input_shape=ModelProperties_MNIST.input_shape
     ))
     model.add(Activation('relu'))
     model.add(Convolution2D(nb_filters, nb_conv, nb_conv))
@@ -37,4 +39,39 @@ def create_MNIST_CNN():
     model.add(Dropout(0.5))
     model.add(Dense(ModelProperties_MNIST.nb_classes))
     model.add(Activation('softmax'))    
+    return model
+
+def create_MNIST_CNN1():
+    model = Sequential()
+    model.add(Convolution2D(32, 3, 3, input_shape=ModelProperties_MNIST.input_shape))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Convolution2D(32, 3, 3))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Flatten())
+    model.add(Dense(16))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(ModelProperties_MNIST.nb_classes))
+    model.add(Activation('sigmoid'))
+    return model
+
+def create_MNIST_CNN2():
+    model = Sequential()
+    model.add(Convolution2D(32, 3, 3, input_shape=ModelProperties_MNIST.input_shape))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Convolution2D(64, 3, 3))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Convolution2D(128, 3, 3))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Flatten())
+    model.add(Dense(128))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(ModelProperties_MNIST.nb_classes))
+    model.add(Activation('sigmoid'))
     return model

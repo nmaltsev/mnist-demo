@@ -103,7 +103,7 @@ def plot_general(data):
     #     }, f, pickle.HIGHEST_PROTOCOL)
 
 if __name__ == '__main__':
-    data = load('plot.data')
+    data = load('experiments/plot.data')
     #plot_general(data)
     #plot_accuracy(data)
     #plot_loss(data)
