@@ -94,7 +94,7 @@ else:
 # We evaluate the quality of network training on test data
 scores = model.evaluate(X_test, Y_test, verbose=0)
 print("The accuracy on test dataset: %.2f%%" % (scores[1]*100))
-
+print(scores)
 # Get json description of model
 model_json = model.to_json()
 

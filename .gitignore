@@ -104,3 +104,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+*.data
+*.save
+*.png
+*.h5
+artefacts/
+
