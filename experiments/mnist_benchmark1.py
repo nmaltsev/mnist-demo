@@ -46,6 +46,7 @@ model = create_MNIST_CNN1() # the worstest
 model.compile(**COMPILE_MODES.get(2))
 # print(model.summary())
 
+
 ########################################################################
 validation_split = 0.1
 # earlyStopping = EarlyStopping(monitor='val_loss', mode='min', verbose=1)
