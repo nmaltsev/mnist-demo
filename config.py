@@ -1,4 +1,5 @@
-class CNN_config:
+class config:
+    artefacts_dir='artefacts/'
     model_json_path='artefacts/mnist_model.json'
     model_weight_path='artefacts/mnist_model.h5'
     batch_size=8
