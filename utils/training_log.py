@@ -2,9 +2,12 @@ import numpy as np
 import cPickle as pickle
 import keras
 
-
+from keras.callbacks import Callback
 
 class TrainingLog(keras.callbacks.Callback):
+    def __init__(self, log_path='train_batchs.data'):
+        super(Callback, self).__init__()
+        self.log_path = log_path
     
     # This function is called when the training begins
     def on_train_begin(self, logs={}):
@@ -22,10 +25,10 @@ class TrainingLog(keras.callbacks.Callback):
         self.batch.append(logs.get('batch'))
         self.size.append(logs.get('size'))
 
-        with open('train_batchs.data', 'wb') as f:
-						pickle.dump({
-								'batch': self.batch,
-								'loss': self.loss,
-								'acc': self.acc,
-								'size': self.size
-						}, f, pickle.HIGHEST_PROTOCOL)
+        with open(self.log_path, 'wb') as f:
+            pickle.dump({
+                    'batch': self.batch,
+                    'loss': self.loss,
+                    'acc': self.acc,
+                    'size': self.size
+            }, f, pickle.HIGHEST_PROTOCOL)

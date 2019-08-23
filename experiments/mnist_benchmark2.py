@@ -72,7 +72,7 @@ if CNN_config.use_fit_generator:
             plot_losses, 
             # earlyStopping, 
             # modelCheckpoint,
-            EarlyStoppingByLoss(threshold=0.01)
+            EarlyStoppingByLoss(threshold=0.02)
         ]
     )
     timer.stop().note('Prediction time')
